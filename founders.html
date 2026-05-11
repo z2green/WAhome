@@ -246,9 +246,39 @@
   /* ── RESPONSIVE ─────────────────────────────────────────── */
   @media (max-width: 900px) { .tiers-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; } }
   @media (max-width: 768px) { .why-grid { grid-template-columns: 1fr; } .trust-grid { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } .hero-stats { gap: 32px; } }
+
+  /* ── CROSS-PAGE NAV ──────────────────────────────────────── */
+  .topnav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(14, 28, 8, 0.92); backdrop-filter: blur(8px);
+    padding: 16px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; color: #fff; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; }
+  .nav-logo span { color: #c9a84c; }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: #c9a84c; }
+  .nav-cta { padding: 10px 24px; background: #c9a84c; color: #1e3a12; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+  .nav-cta:hover { background: #e8c96a; }
+  .nav-cta.active { background: #e8c96a; }
+  @media (max-width: 768px) { .nav-links a:not(.nav-cta) { display: none; } }
+
 </style>
 </head>
 <body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <a href="index.html" class="nav-logo">Waypoint <span>Acres</span></a>
+  <div class="nav-links">
+    <a href="index.html">Overview</a>
+    <a href="cabins.html">Cabins</a>
+    <a href="founders.html" class="nav-cta active">Founding Members</a>
+  </div>
+</nav>
+
 
 <!-- HERO -->
 <section class="hero">
