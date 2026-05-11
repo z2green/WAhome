@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About the Project — Waypoint Acres</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest:      #1e3a12;
+    --forest-mid:  #2d5016;
+    --moss:        #4a7c2f;
+    --gold:        #c9a84c;
+    --gold-light:  #e8c96a;
+    --cream:       #f9f5ee;
+    --warm:        #f2ece0;
+    --charcoal:    #2a2a2a;
+    --mid:         #555;
+    --light:       #888;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; }
+
+  /* ── NAV ─────────────────────────────────────────────── */
+  .topnav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(14, 28, 8, 0.92); backdrop-filter: blur(8px);
+    padding: 16px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; color: #fff; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    padding: 10px 24px; background: var(--gold); color: var(--forest);
+    font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-light); }
+
+  /* ── HERO ─────────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    background:
+      linear-gradient(160deg, rgba(18,35,10,0.85) 0%, rgba(30,58,18,0.62) 50%, rgba(18,35,10,0.82) 100%),
+      repeating-linear-gradient(60deg, transparent, transparent 80px, rgba(255,255,255,0.015) 80px, rgba(255,255,255,0.015) 81px),
+      linear-gradient(135deg, #1a3a0d 0%, #0d2206 30%, #1e4010 60%, #0a1a06 100%);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 80px 32px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 55% 50% at 25% 38%, rgba(74,124,47,0.14) 0%, transparent 70%),
+      radial-gradient(ellipse 45% 55% at 78% 68%, rgba(201,168,76,0.07) 0%, transparent 70%);
+  }
+  .hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; position: relative; z-index: 1; opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 7vw, 6rem); font-weight: 300; color: #fff; line-height: 1.05; letter-spacing: -1px; position: relative; z-index: 1; opacity: 0; animation: fadeUp 1s ease 0.4s forwards; }
+  .hero h1 em { font-style: italic; color: var(--gold-light); }
+  .hero-sub { font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.62); margin-top: 24px; letter-spacing: 0.5px; position: relative; z-index: 1; opacity: 0; animation: fadeUp 1s ease 0.6s forwards; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 36px auto; position: relative; z-index: 1; opacity: 0; animation: fadeUp 1s ease 0.7s forwards; }
+  .hero-stats { display: flex; gap: 56px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; opacity: 0; animation: fadeUp 1s ease 0.9s forwards; }
+  .hero-stat { text-align: center; }
+  .hero-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 500; color: var(--gold-light); line-height: 1; }
+  .hero-stat-label { font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.45); letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; }
+  .hero-cta { margin-top: 56px; position: relative; z-index: 1; opacity: 0; animation: fadeUp 1s ease 1.1s forwards; }
+  .btn-primary { display: inline-block; padding: 16px 44px; background: var(--gold); color: var(--forest); font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: all 0.3s ease; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-ghost { display: inline-block; padding: 15px 40px; border: 1px solid rgba(201,168,76,0.5); color: var(--gold); font-size: 13px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; margin-left: 16px; transition: all 0.3s ease; }
+  .btn-ghost:hover { border-color: var(--gold); background: rgba(201,168,76,0.07); }
+  .scroll-hint { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); z-index: 1; opacity: 0; animation: fadeUp 1s ease 1.4s forwards; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .scroll-hint span { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+  .scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent); animation: pulse-line 2s ease-in-out infinite; }
+
+  /* ── SECTIONS ─────────────────────────────────────────── */
+  section { padding: 100px 32px; }
+  .container { max-width: 1060px; margin: 0 auto; }
+  .section-label { font-size: 10px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 400; color: var(--forest); line-height: 1.15; margin-bottom: 24px; }
+  .section-title em { font-style: italic; }
+  .section-body { font-size: 15.5px; line-height: 1.8; color: var(--mid); max-width: 660px; }
+
+  /* ── INTRO / ABOUT ────────────────────────────────────── */
+  .about { background: var(--warm); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 60px; }
+  .about-feature { display: flex; gap: 20px; margin-bottom: 32px; align-items: flex-start; }
+  .feature-icon { width: 40px; height: 40px; min-width: 40px; border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 18px; margin-top: 2px; }
+  .feature-text h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--forest); margin-bottom: 4px; }
+  .feature-text p { font-size: 14px; color: var(--mid); line-height: 1.65; }
+  .about-visual { background: linear-gradient(135deg, var(--forest) 0%, #0d2206 100%); padding: 52px 44px; position: relative; }
+  .about-visual::before { content: ''; position: absolute; top: 12px; left: 12px; right: -12px; bottom: -12px; border: 1px solid var(--gold); z-index: -1; }
+  .about-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .about-stat { border-left: 2px solid var(--gold); padding-left: 16px; }
+  .about-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 500; color: var(--gold-light); }
+  .about-stat-desc { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 4px; line-height: 1.4; }
+
+  /* ── ENERGY ───────────────────────────────────────────── */
+  .energy { background: var(--forest); }
+  .energy .section-label { color: var(--gold); }
+  .energy .section-title { color: #fff; }
+  .energy .section-body { color: rgba(255,255,255,0.5); }
+  .energy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); margin-top: 60px; border: 1px solid rgba(255,255,255,0.06); }
+  .energy-block { background: rgba(255,255,255,0.03); padding: 36px 32px; }
+  .energy-block-icon { font-size: 24px; margin-bottom: 16px; }
+  .energy-block h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--gold-light); margin-bottom: 8px; }
+  .energy-block p { font-size: 13.5px; color: rgba(255,255,255,0.5); line-height: 1.65; }
+  .energy-block.accent { background: rgba(201,168,76,0.07); }
+  .energy-statement { margin-top: 52px; border-left: 3px solid var(--gold); padding: 24px 32px; }
+  .energy-statement p { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.8); line-height: 1.6; }
+  .energy-statement cite { display: block; margin-top: 12px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-style: normal; }
+
+  /* ── CABINS ───────────────────────────────────────────── */
+  .cabins { background: var(--cream); }
+  .cabins-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 60px; }
+  .cabin-card { border: 1px solid rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .cabin-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+  .cabin-card.featured { border-color: var(--gold); }
+  .cabin-header { padding: 40px 36px 28px; background: var(--forest); position: relative; }
+  .cabin-badge { position: absolute; top: 20px; right: 20px; background: var(--gold); color: var(--forest); font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; }
+  .cabin-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .cabin-name { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 400; color: #fff; line-height: 1.2; }
+  .cabin-rate { margin-top: 18px; display: flex; align-items: baseline; gap: 8px; }
+  .cabin-rate-num { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 500; color: var(--gold-light); }
+  .cabin-rate-label { font-size: 13px; color: rgba(255,255,255,0.4); }
+  .cabin-rate-note { font-size: 12px; color: rgba(255,255,255,0.28); margin-top: 4px; }
+  .cabin-body { padding: 32px 36px; background: #fff; }
+  .cabin-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0ede8; font-size: 14px; }
+  .cabin-row:last-child { border-bottom: none; }
+  .cabin-row-label { color: var(--mid); }
+  .cabin-row-value { font-weight: 500; color: var(--charcoal); }
+
+  /* ── EVENT HALL ───────────────────────────────────────── */
+  .eventhall { background: var(--warm); }
+  .hall-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 60px; }
+  .hall-specs { }
+  .hall-spec-row { display: flex; gap: 20px; margin-bottom: 28px; align-items: flex-start; }
+  .hall-spec-icon { width: 40px; height: 40px; min-width: 40px; border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 17px; }
+  .hall-spec-text h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--forest); margin-bottom: 3px; }
+  .hall-spec-text p { font-size: 13.5px; color: var(--mid); line-height: 1.6; }
+  .hall-notice {
+    background: var(--forest); padding: 40px 40px;
+    position: relative;
+  }
+  .hall-notice::before { content: ''; position: absolute; top: 10px; left: 10px; right: -10px; bottom: -10px; border: 1px solid var(--gold); z-index: -1; }
+  .hall-notice-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .hall-notice p { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.82); line-height: 1.65; }
+  .hall-stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px; }
+  .hall-stat { border-left: 2px solid var(--gold); padding-left: 16px; }
+  .hall-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold-light); }
+  .hall-stat-label { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 3px; }
+
+  /* ── ACTIVITIES ───────────────────────────────────────── */
+  .activities { background: var(--cream); }
+  .activities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(0,0,0,0.08); margin-top: 60px; border: 1px solid rgba(0,0,0,0.08); }
+  .activity-block { background: #fff; padding: 36px 28px; }
+  .activity-block-icon { font-size: 28px; margin-bottom: 14px; }
+  .activity-block h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--forest); margin-bottom: 6px; }
+  .activity-block p { font-size: 13.5px; color: var(--mid); line-height: 1.6; }
+  .activity-block.accent { background: var(--forest); }
+  .activity-block.accent h4 { color: var(--gold-light); }
+  .activity-block.accent p { color: rgba(255,255,255,0.5); }
+  .activity-note { margin-top: 36px; font-size: 14px; color: var(--light); border-left: 3px solid var(--gold); padding-left: 18px; line-height: 1.7; max-width: 600px; }
+
+  /* ── PHASES ───────────────────────────────────────────── */
+  .phases { background: var(--forest); }
+  .phases .section-label { color: var(--gold); }
+  .phases .section-title { color: #fff; }
+  .phases .section-body { color: rgba(255,255,255,0.5); }
+  .phases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 60px; }
+  .phase-card { border: 1px solid rgba(255,255,255,0.08); }
+  .phase-header { padding: 28px 28px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .phase-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: rgba(201,168,76,0.25); line-height: 1; }
+  .phase-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-top: 8px; }
+  .phase-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: #fff; margin-top: 6px; }
+  .phase-body { padding: 24px 28px; }
+  .phase-item { display: flex; gap: 12px; margin-bottom: 14px; font-size: 13.5px; color: rgba(255,255,255,0.5); align-items: flex-start; }
+  .phase-dot { width: 5px; height: 5px; min-width: 5px; background: var(--gold); border-radius: 50%; margin-top: 7px; }
+
+  /* ── CTA ──────────────────────────────────────────────── */
+  .cta-section {
+    background: linear-gradient(135deg, #0d2206 0%, #1e3a12 50%, #0a1a06 100%);
+    text-align: center; padding: 120px 32px; position: relative; overflow: hidden;
+  }
+  .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(201,168,76,0.05) 0%, transparent 70%); }
+  .cta-section .section-label { color: var(--gold); }
+  .cta-section .section-title { color: #fff; max-width: 600px; margin: 0 auto 20px; }
+  .cta-section .section-body { color: rgba(255,255,255,0.5); margin: 0 auto 52px; }
+  .cta-details { display: flex; justify-content: center; gap: 52px; flex-wrap: wrap; margin-bottom: 52px; position: relative; z-index: 1; }
+  .cta-detail { text-align: center; }
+  .cta-detail-num { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold-light); font-weight: 500; }
+  .cta-detail-label { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+
+  /* ── FOOTER ─────────────────────────────────────────────── */
+  footer { background: #0a1a06; padding: 28px 32px; text-align: center; }
+  footer p { font-size: 12px; color: rgba(255,255,255,0.2); letter-spacing: 1px; }
+
+  /* ── ANIMATIONS ─────────────────────────────────────────── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pulse-line { 0%, 100% { opacity: 0.3; transform: scaleY(1); } 50% { opacity: 0.7; transform: scaleY(1.1); } }
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ─────────────────────────────────────────── */
+  @media (max-width: 900px) { .phases-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; } .cabins-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; } }
+  @media (max-width: 768px) { .about-grid, .hall-grid { grid-template-columns: 1fr; gap: 48px; } .energy-grid, .activities-grid { grid-template-columns: 1fr; } .hero-stats { gap: 32px; } .nav-links { display: none; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <a href="#" class="nav-logo">Waypoint <span>Acres</span></a>
+  <div class="nav-links">
+    <a href="#energy">Energy</a>
+    <a href="#cabins">Cabins</a>
+    <a href="#hall">Event Hall</a>
+    <a href="#activities">Activities</a>
+    <a href="WA_FoundingMembership_v2.html" class="nav-cta">Founding Membership</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Alberta · Off-Grid Eco-Luxury · Pre-Development</p>
+  <h1>241 Acres.<br>No Fossil Fuels.<br><em>One Destination.</em></h1>
+  <p class="hero-sub">4-season net-zero retreat · 14 private cabins · 350-seat event hall · 45 min west of Edmonton · Opening late 2027</p>
+  <div class="hero-divider"></div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">241</div><div class="hero-stat-label">Acres</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">14</div><div class="hero-stat-label">Net-Zero Cabins</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">350</div><div class="hero-stat-label">Seat Event Hall</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">Zero</div><div class="hero-stat-label">Fossil Fuels</div></div>
+  </div>
+  <div class="hero-cta">
+    <a href="#about" class="btn-primary">Explore the Project</a>
+    <a href="WA_FoundingMembership_v2.html" class="btn-ghost">Founding Membership</a>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <p class="section-label reveal">The Concept</p>
+    <h2 class="section-title reveal">Off-Grid Luxury,<br><em>Built for Alberta.</em></h2>
+    <p class="section-body reveal">Waypoint Acres fills a gap that doesn't exist anywhere else in Alberta: a large-capacity, fully net-zero event venue combined with private eco-luxury cabin accommodation, all on one property. The site will host corporate retreats, association events, faith communities, youth programming, and leisure guests — four seasons, fully off-grid, no propane, no diesel.</p>
+
+    <div class="about-grid reveal">
+      <div>
+        <div class="about-feature">
+          <div class="feature-icon">🌲</div>
+          <div class="feature-text">
+            <h4>241 Acres of Private Land</h4>
+            <p>Fee-simple titled property, not leased. Each cabin set on its own private half-acre — no shared walls, no crowds, no parking-lot views.</p>
+          </div>
+        </div>
+        <div class="about-feature">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-text">
+            <h4>Net-Zero by Design</h4>
+            <p>Geothermal, solar, and biomass only. The energy strategy is layered for reliability, not greenwashing. No propane. No diesel generators. Full stop.</p>
+          </div>
+        </div>
+        <div class="about-feature">
+          <div class="feature-icon">🏕️</div>
+          <div class="feature-text">
+            <h4>Owner-Operated, On-Site</h4>
+            <p>The developer lives on-site full time as the operations manager. No absentee management. Every guest experience is personal.</p>
+          </div>
+        </div>
+        <div class="about-feature">
+          <div class="feature-icon">🤝</div>
+          <div class="feature-text">
+            <h4>Backed by Explore Edmonton</h4>
+            <p>Edmonton's destination marketing organization has offered to actively promote all activities, accommodations, and events — connecting the property to Edmonton's existing visitor network at opening.</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="about-stat-grid">
+          <div class="about-stat"><div class="about-stat-num">45 min</div><div class="about-stat-desc">west of Edmonton city centre</div></div>
+          <div class="about-stat"><div class="about-stat-num">4-Season</div><div class="about-stat-desc">fully operational year-round</div></div>
+          <div class="about-stat"><div class="about-stat-num">500+</div><div class="about-stat-desc">vehicle parking for events</div></div>
+          <div class="about-stat"><div class="about-stat-num">Dry</div><div class="about-stat-desc">no alcohol served or permitted — ever</div></div>
+          <div class="about-stat"><div class="about-stat-num">2027</div><div class="about-stat-desc">construction target; opening late 2027 / early 2028</div></div>
+          <div class="about-stat"><div class="about-stat-num">Zero</div><div class="about-stat-desc">propane or diesel generators on-site</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENERGY -->
+<section class="energy" id="energy">
+  <div class="container">
+    <p class="section-label reveal">Clean Energy Infrastructure</p>
+    <h2 class="section-title reveal">No Fossil Fuels.<br><em>No Exceptions.</em></h2>
+    <p class="section-body reveal">The energy strategy is layered for Alberta's climate — geothermal primary, biomass backup, solar for electricity, with a full off-grid expansion in Phase 2. The Phase 1 build includes hybrid inverters, oversized conduit, and a pre-built battery room so the Phase 2 transition is a retrofit, not a rebuild.</p>
+
+    <div class="energy-grid reveal">
+      <div class="energy-block accent">
+        <div class="energy-block-icon">🌡️</div>
+        <h4>Geothermal Heating</h4>
+        <p>Primary heat source across all buildings. Ground-source heat pump — consistent, renewable, and well-suited to Alberta's deep freeze winters. No combustion, no emissions at the point of use.</p>
+      </div>
+      <div class="energy-block">
+        <div class="energy-block-icon">🪵</div>
+        <h4>Biomass Pellet Boilers</h4>
+        <p>Two pellet boilers provide redundant backup heating. Carbon-neutral fuel sourced from compressed wood waste. No propane, no natural gas — the backup is as clean as the primary.</p>
+      </div>
+      <div class="energy-block">
+        <div class="energy-block-icon">☀️</div>
+        <h4>Solar Photovoltaic</h4>
+        <p>25kW array in Phase 1, supplemented by grid tie-in during the transition period. Full solar expansion and wind turbine added in Phase 2 alongside a complete off-grid battery bank.</p>
+      </div>
+      <div class="energy-block">
+        <div class="energy-block-icon">💨</div>
+        <h4>Wind Turbine (Phase 2)</h4>
+        <p>Added in Year 2 alongside the full off-grid battery bank, completing the transition from grid-supplemented to fully off-grid operation.</p>
+      </div>
+      <div class="energy-block">
+        <div class="energy-block-icon">💧</div>
+        <h4>Constructed Wetlands</h4>
+        <p>On-site ecological water management. Natural filtration systems integrated into the site plan — not an afterthought, part of the original land design.</p>
+      </div>
+      <div class="energy-block accent">
+        <div class="energy-block-icon">🏗️</div>
+        <h4>Phase 2-Ready from Day One</h4>
+        <p>Hybrid inverters, oversized conduit runs, and a pre-built dedicated battery room in Phase 1. The off-grid upgrade is planned in, not bolted on.</p>
+      </div>
+    </div>
+
+    <div class="energy-statement reveal">
+      <p>"Every watt of energy at Waypoint Acres comes from geothermal, solar, or biomass. No propane lines. No diesel generators anywhere on the property. That's not an aspiration — it's how the infrastructure is being built."</p>
+      <cite>— Vicky Bailey, Developer &amp; Owner-Operator</cite>
+    </div>
+  </div>
+</section>
+
+<!-- CABINS -->
+<section class="cabins" id="cabins">
+  <div class="container">
+    <p class="section-label reveal">Accommodation</p>
+    <h2 class="section-title reveal">14 Net-Zero Cabins.<br><em>Every One Private.</em></h2>
+    <p class="section-body reveal">No shared walls. No parking-lot views. No televisions. Each cabin is a completely self-contained retreat on its own half-acre, designed as a screen-free nature destination for individuals, couples, families, and small groups.</p>
+
+    <div class="cabins-grid reveal">
+
+      <div class="cabin-card">
+        <div class="cabin-header">
+          <p class="cabin-label">Tier 1</p>
+          <h3 class="cabin-name">Sanctuary<br>Cabin</h3>
+          <div class="cabin-rate">
+            <span class="cabin-rate-num">$300</span>
+            <span class="cabin-rate-label">/ night (Founding Rate)</span>
+          </div>
+          <div class="cabin-rate-note">Year 2 Standard Rate: $350/night</div>
+        </div>
+        <div class="cabin-body">
+          <div class="cabin-row"><span class="cabin-row-label">Inventory</span><span class="cabin-row-value">7 cabins</span></div>
+          <div class="cabin-row"><span class="cabin-row-label">Sleeps</span><span class="cabin-row-value">2–4 guests</span></div>
+          <div class="cabin-row"><span class="cabin-row-label">Private Hot Tub</span><span class="cabin-row-value">✓ Every cabin</span></div>
+          <div class="cabin-row"><span class="cabin-row-label">Smokeless Firepit</span><span class="cabin-row-value">✓ Every cabin</span></div>
+          <div class="cabin-row"><span class="cabin-row-label">Full Kitchen</span><span class="cabin-row-value">✓ In-cabin</span></div>
+          <div class="cabin-row"><span class="cabin-row-label">Washer / Dryer</span><span class="cabin-row-value">✓ In-cabin</span></div>
+          <div class="cabin-row"><span class="cabin-row-label">WiFi</span><span class="cabin-row-value">Starlink (site-wide)</span></div>
+          <div class="cabin-row"><span class="cabin-row-label">Televisions</span><span class="cabin-row-value">None — by design</span></div>
+          <div class="cabin-row"><span class="cabin-row-label">Multi-Night Discount</span><span class="cabin-row-value">10% (2+ nights)</span></div>
+        </div>
+      </div>
+
+      <div class="cabin-card featured">
+        <div class="cabin-badge">More Space</div>
+        <div class="cabin-header">
+          <p class="cabin-label">Tier 2</p>
+          <h3 class="cabin-name">Grand<br>Retreat</h3>
+          <div class="cabin-rate">
+            <span class="cabin-rate-num">$350</span>
+            <span class="cabin-rate-label">/ night (Founding Rate)</span>
+          </div>
+          <div class="cabin-rate-note">Year 2 Standard Rate: $400/night</div>
+        </div>
+        <div class="cabin-body">
+          <div class="cabin-row"><span class="cabin-row-label">Inventory</span><span class="cabin-row-value">7 cabins</span></div>
+          <div class="cabin-row"><span class="cabin-row-label">Sleeps</span><span class="cabin-row-value">Up to 6 guests</span></div>
+          <div class="cabin-row"><span class="cabin-row-label">Private Hot Tub</span><span class="cabin-row-value">✓ Every cabin</span></div>
+          <div class="cabin-row"><span class="cabin-row-label">Smokeless Firepit</span><span class="cabin-row-value">✓ Every cabin</span></div>
+          <div class="cabin-row"><span class="cabin-row-label">Full Kitchen</span><span class="cabin-row-value">✓ In-cabin</span></div>
+          <div class="cabin-row"><span class="cabin-row-label">Washer / Dryer</span><span class="cabin-row-value">✓ In-cabin</span></div>
+          <div class="cabin-row"><span class="cabin-row-label">WiFi</span><span class="cabin-row-value">Starlink (site-wide)</span></div>
+          <div class="cabin-row"><span class="cabin-row-label">Televisions</span><span class="cabin-row-value">None — by design</span></div>
+          <div class="cabin-row"><span class="cabin-row-label">Multi-Night Discount</span><span class="cabin-row-value">10% (2+ nights)</span></div>
+        </div>
+      </div>
+
+    </div>
+    <p style="margin-top: 20px; font-size: 13px; color: var(--light); text-align: center;">All 14 cabins include access to heated lounger pavilion, outdoor activity gear, groomed trails, and shared site amenities.</p>
+  </div>
+</section>
+
+<!-- EVENT HALL -->
+<section class="eventhall" id="hall">
+  <div class="container">
+    <p class="section-label reveal">Event Venue</p>
+    <h2 class="section-title reveal">Alberta's Only Large-Capacity<br><em>Net-Zero Event Hall.</em></h2>
+    <p class="section-body reveal">350 seats. Custom thrust stage. Full production A/V. No comparable facility in Alberta combines this capacity with net-zero credentials — and none of them are dry venues.</p>
+
+    <div class="hall-grid reveal">
+      <div class="hall-specs">
+        <div class="hall-spec-row">
+          <div class="hall-spec-icon">🏛️</div>
+          <div class="hall-spec-text"><h4>65×90 ft Clear-Span Floor</h4><p>80×120 ft total building footprint with a 65×90 ft unobstructed event floor. Flexible configuration for banquet, theatre, classroom, and standing reception.</p></div>
+        </div>
+        <div class="hall-spec-row">
+          <div class="hall-spec-icon">🎭</div>
+          <div class="hall-spec-text"><h4>Custom Thrust Stage</h4><p>Three-level concentric modular aluminum stage — 22/18/14 ft wide. Built for keynote presentations, award ceremonies, musical performances, and panel discussions. Not a riser. A real stage.</p></div>
+        </div>
+        <div class="hall-spec-row">
+          <div class="hall-spec-icon">🖥️</div>
+          <div class="hall-spec-text"><h4>Three-Screen A/V System</h4><p>One 16×9 motorized backdrop screen. Two 10×6 ceiling-mounted audience screens. Full production stage lighting. PA system. All built-in — no rental, no setup labour.</p></div>
+        </div>
+        <div class="hall-spec-row">
+          <div class="hall-spec-icon">🚻</div>
+          <div class="hall-spec-text"><h4>12 Bathroom Pods</h4><p>Designed to NBC fixture-count standards for 350-person occupancy. No port-a-potties at a Waypoint Acres event.</p></div>
+        </div>
+        <div class="hall-spec-row">
+          <div class="hall-spec-icon">🚗</div>
+          <div class="hall-spec-text"><h4>500+ Vehicle Parking</h4><p>Two gravel lots serving the event hall. Large-scale conferences and annual general meetings are fully workable.</p></div>
+        </div>
+        <div class="hall-spec-row">
+          <div class="hall-spec-icon">🍽️</div>
+          <div class="hall-spec-text"><h4>60×60 ft Commercial Kitchen</h4><p>Full commercial prep kitchen adjacent to the event hall, plus an attached Commons Lounge — quiet shared gathering space for between-session breaks, light snacks, and specialty non-alcoholic beverages.</p></div>
+        </div>
+      </div>
+
+      <div class="hall-notice">
+        <div class="hall-notice-label">Dry Venue Policy</div>
+        <p>"Waypoint Acres is a fully dry site — no alcohol is served, sold, or permitted anywhere on the property at any time. This is a permanent design decision, not a policy that varies by event type. Specialty mocktails and non-alcoholic beverages are available at applicable events.</p>
+        <p style="margin-top: 16px; font-size: 13.5px; color: rgba(255,255,255,0.4); font-family: 'DM Sans'; font-style: normal; font-weight: 300; line-height: 1.65;">For faith communities, youth organizations, wellness groups, and organizations that actively seek alcohol-free environments, this is a genuine differentiator — not a limitation."</p>
+        <div class="hall-stat-row">
+          <div class="hall-stat"><div class="hall-stat-num">350</div><div class="hall-stat-label">seat capacity</div></div>
+          <div class="hall-stat"><div class="hall-stat-num">$3,600</div><div class="hall-stat-label">flat daily hall rate (incl. A/V)</div></div>
+          <div class="hall-stat"><div class="hall-stat-num">Year 2</div><div class="hall-stat-label">private wedding venue added</div></div>
+          <div class="hall-stat"><div class="hall-stat-num">Zero</div><div class="hall-stat-label">alcohol — ever</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="activities" id="activities">
+  <div class="container">
+    <p class="section-label reveal">Outdoor Activities</p>
+    <h2 class="section-title reveal">Self-Directed.<br><em>No Schedules. No Facilitators.</em></h2>
+    <p class="section-body reveal">All gear is available on-site. No programming required, no booking needed for most activities, no extra charge for included amenities. The mix is intentional — physically challenging options for corporate team-building, quiet options for retreat guests, and everything in between.</p>
+
+    <div class="activities-grid reveal">
+      <div class="activity-block accent">
+        <div class="activity-block-icon">🧩</div>
+        <h4>Outdoor Escape Rooms</h4>
+        <p>Multiple scenarios across the property. Team-based, self-run, no facilitator required — the strongest corporate team-building option on the site without adding a line to the invoice.</p>
+      </div>
+      <div class="activity-block">
+        <div class="activity-block-icon">🏃</div>
+        <h4>Ninja Obstacle Course</h4>
+        <p>Competitive, scalable, and accessible to a wide range of fitness levels. A genuine differentiator for corporate retreats and youth programming.</p>
+      </div>
+      <div class="activity-block">
+        <div class="activity-block-icon">🏀</div>
+        <h4>MUGA Courts</h4>
+        <p>Multi-use games area for basketball, pickleball, and futsal. Year-round surface. Converts to outdoor rink in winter.</p>
+      </div>
+      <div class="activity-block">
+        <div class="activity-block-icon">🚲</div>
+        <h4>28 Fat Bikes + 2 Hand Bikes</h4>
+        <p>Year-round trail riding on 241 acres of natural and groomed terrain. Off-site day rate available ($50/day). Hand bikes ensure the fleet is fully accessible.</p>
+      </div>
+      <div class="activity-block">
+        <div class="activity-block-icon">⛷️</div>
+        <h4>Snowshoes &amp; Cross-Country Skis</h4>
+        <p>28 pairs of each — enough for a full event group. Groomed perimeter trail network and natural backcountry routes on 241 acres.</p>
+      </div>
+      <div class="activity-block accent">
+        <div class="activity-block-icon">🌡️</div>
+        <h4>Heated Lounger Pavilion</h4>
+        <p>Six bookable heated loungers — the "do nothing" amenity. Available to all property guests at no extra charge. Reserve through the booking system.</p>
+      </div>
+      <div class="activity-block">
+        <div class="activity-block-icon">🗺️</div>
+        <h4>Geocaching</h4>
+        <p>Multiple routes across the full 241 acres. Works solo or in groups — another zero-cost, self-directed team activity.</p>
+      </div>
+      <div class="activity-block">
+        <div class="activity-block-icon">♿</div>
+        <h4>All-Terrain Wheelchair</h4>
+        <p>Part of the standard gear inventory. Outdoor access is not an afterthought — the property is designed with a wide range of physical abilities in mind.</p>
+      </div>
+      <div class="activity-block">
+        <div class="activity-block-icon">🌿</div>
+        <h4>Groomed Trail Network</h4>
+        <p>Maintained perimeter trail plus natural routes through the full property — for walking, running, snowshoeing, or just getting away from everyone else for twenty minutes.</p>
+      </div>
+    </div>
+    <p class="activity-note reveal">Activities are per-person add-ons for event bookings or included as part of cabin stays. Programming packages range approximately $40–60/pp depending on activities selected. No minimum group size for most activities.</p>
+  </div>
+</section>
+
+<!-- PHASES -->
+<section class="phases">
+  <div class="container">
+    <p class="section-label reveal">Development Timeline</p>
+    <h2 class="section-title reveal">Built in Phases.<br><em>Designed for the Long Run.</em></h2>
+    <p class="section-body reveal">Phase 1 opens the full core product. Phase 2 expands into private events and full energy independence. Phase 3 adds large-scale outdoor programming.</p>
+
+    <div class="phases-grid reveal">
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-num">01</div>
+          <div class="phase-label">Construction 2027</div>
+          <div class="phase-name">Core Property</div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-item"><div class="phase-dot"></div><span>14 net-zero cabins, fully operational</span></div>
+          <div class="phase-item"><div class="phase-dot"></div><span>350-seat event hall + stage + A/V</span></div>
+          <div class="phase-item"><div class="phase-dot"></div><span>Commercial kitchen + Commons Lounge</span></div>
+          <div class="phase-item"><div class="phase-dot"></div><span>Full outdoor activity park</span></div>
+          <div class="phase-item"><div class="phase-dot"></div><span>Geothermal + solar (25kW) + biomass</span></div>
+          <div class="phase-item"><div class="phase-dot"></div><span>Grid tie-in (transition bridge)</span></div>
+          <div class="phase-item"><div class="phase-dot"></div><span>Battery room pre-built for Phase 2</span></div>
+        </div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-num">02</div>
+          <div class="phase-label">Year 2 Expansion</div>
+          <div class="phase-name">Full Off-Grid + Private Events</div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-item"><div class="phase-dot"></div><span>Private wedding venue — 110-seat capacity</span></div>
+          <div class="phase-item"><div class="phase-dot"></div><span>Interactive sport gaming &amp; breakout conference hall (5–7K sq ft)</span></div>
+          <div class="phase-item"><div class="phase-dot"></div><span>Full solar expansion + wind turbine</span></div>
+          <div class="phase-item"><div class="phase-dot"></div><span>Full off-grid battery bank — grid disconnected</span></div>
+          <div class="phase-item"><div class="phase-dot"></div><span>40×60 greenhouse (pending available capital)</span></div>
+        </div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-num">03</div>
+          <div class="phase-label">Future Phase</div>
+          <div class="phase-name">Outdoor Amphitheatre</div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-item"><div class="phase-dot"></div><span>Large-scale outdoor amphitheatre</span></div>
+          <div class="phase-item"><div class="phase-dot"></div><span>Additional programming determined by community demand and operational capacity</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <p class="section-label">Founding Membership</p>
+    <h2 class="section-title">The Lowest Rate<br><em>We Will Ever Offer.</em></h2>
+    <p class="section-body">Three tiers. Rate locked for life. Pre-opening memberships held in trust and fully refundable if the venue doesn't open.</p>
+    <div class="cta-details">
+      <div class="cta-detail"><div class="cta-detail-num">Pioneer</div><div class="cta-detail-label">$299 / year</div></div>
+      <div class="cta-detail"><div class="cta-detail-num">Trailblazer</div><div class="cta-detail-label">$599 / year</div></div>
+      <div class="cta-detail"><div class="cta-detail-num">Steward</div><div class="cta-detail-label">$1,200 / year</div></div>
+      <div class="cta-detail"><div class="cta-detail-num">100%</div><div class="cta-detail-label">refundable if we don't open</div></div>
+    </div>
+    <a href="WA_FoundingMembership_v2.html" class="btn-primary" style="position:relative;z-index:1">Learn About Founding Membership</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>WAYPOINT ACRES &nbsp;·&nbsp; waypointacres.ca &nbsp;·&nbsp; Off-Grid Eco-Luxury Event Venue &amp; Cabins &nbsp;·&nbsp; ~45 min West of Edmonton, Alberta &nbsp;·&nbsp; Opening Late 2027</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.10 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
