@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Founding Membership — Waypoint Acres</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest:      #1e3a12;
+    --forest-mid:  #2d5016;
+    --moss:        #4a7c2f;
+    --gold:        #c9a84c;
+    --gold-light:  #f2df82;
+    --cream:       #f9f5ee;
+    --warm:        #f2ece0;
+    --charcoal:    #2a2a2a;
+    --mid:         #555;
+    --light:       #888;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; }
+
+  /* ── HERO ─────────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    background:
+      linear-gradient(160deg, rgba(18,35,10,0.88) 0%, rgba(30,58,18,0.65) 50%, rgba(18,35,10,0.84) 100%),
+      repeating-linear-gradient(60deg, transparent, transparent 80px, rgba(255,255,255,0.015) 80px, rgba(255,255,255,0.015) 81px),
+      linear-gradient(135deg, #1a3a0d 0%, #0d2206 30%, #1e4010 60%, #0a1a06 100%);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 80px 32px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 30% 40%, rgba(74,124,47,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 75% 65%, rgba(201,168,76,0.07) 0%, transparent 70%);
+  }
+  .hero-eyebrow {
+    font-size: 0.8125rem; font-weight: 500; letter-spacing: 4px; text-transform: uppercase;
+    color: rgba(201,168,76,0.95); margin-bottom: 28px; position: relative; z-index: 1;
+    opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 7vw, 6rem); font-weight: 300;
+    color: #fff; line-height: 1.05; letter-spacing: -1px;
+    position: relative; z-index: 1;
+    opacity: 0; animation: fadeUp 1s ease 0.4s forwards;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-light); }
+  .hero-sub {
+    font-size: 1.0625rem; font-weight: 300; color: rgba(255,255,255,0.78);
+    margin-top: 24px; letter-spacing: 0.5px;
+    position: relative; z-index: 1;
+    opacity: 0; animation: fadeUp 1s ease 0.6s forwards;
+  }
+  .hero-divider {
+    width: 60px; height: 1px; background: var(--gold);
+    margin: 36px auto; position: relative; z-index: 1;
+    opacity: 0; animation: fadeUp 1s ease 0.7s forwards;
+  }
+  .hero-stats {
+    display: flex; gap: 56px; justify-content: center; flex-wrap: wrap;
+    position: relative; z-index: 1;
+    opacity: 0; animation: fadeUp 1s ease 0.9s forwards;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.6rem; font-weight: 500; color: var(--gold-light); line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 0.8125rem; font-weight: 400; color: rgba(255,255,255,0.62);
+    letter-spacing: 2px; text-transform: uppercase; margin-top: 6px;
+  }
+  .hero-cta {
+    margin-top: 56px; position: relative; z-index: 1;
+    opacity: 0; animation: fadeUp 1s ease 1.1s forwards;
+  }
+  .btn-primary {
+    display: inline-block; padding: 16px 44px;
+    background: var(--gold); color: var(--forest);
+    font-size: 0.9375rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s ease;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-ghost {
+    display: inline-block; padding: 15px 40px;
+    border: 1px solid rgba(201,168,76,0.5); color: var(--gold);
+    font-size: 0.9375rem; font-weight: 400; letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none; margin-left: 16px; transition: all 0.3s ease;
+  }
+  .btn-ghost:hover { border-color: var(--gold); background: rgba(201,168,76,0.07); }
+  .scroll-hint {
+    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+    z-index: 1; opacity: 0; animation: fadeUp 1s ease 1.4s forwards;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .scroll-hint span { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+  .scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent); animation: pulse-line 2s ease-in-out infinite; }
+
+  /* ── SECTIONS ─────────────────────────────────────────── */
+  section { padding: 100px 32px; }
+  .container { max-width: 1060px; margin: 0 auto; }
+  .section-label { font-size: 0.8125rem; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; color: rgba(201,168,76,0.9); margin-bottom: 16px; line-height: 1.5; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 400; color: var(--forest); line-height: 1.15; margin-bottom: 24px; }
+  .section-title em { font-style: italic; }
+  .section-body { font-size: 1.0625rem; line-height: 1.8; color: var(--mid); max-width: 660px; }
+
+  /* ── WHY JOIN ──────────────────────────────────────────── */
+  .why { background: var(--warm); }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: rgba(0,0,0,0.08); margin-top: 2.5rem; border: 1px solid rgba(0,0,0,0.08);
+  }
+  .why-block { background: #fff; padding: 40px 32px; }
+  .why-block-icon { font-size: 2.125rem; margin-bottom: 16px; }
+  .why-block h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 600; color: var(--forest); margin-bottom: 8px; }
+  .why-block p { font-size: 1.0625rem; color: #666; line-height: 1.5; }
+  .why-block.accent { background: var(--forest); }
+  .why-block.accent h4 { color: var(--gold-light); }
+  .why-block.accent p { color: rgba(255,255,255,0.68); }
+
+  /* ── TIERS ─────────────────────────────────────────────── */
+  .tiers { background: var(--cream); padding: 80px 32px; }
+  .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 60px; }
+  .tier-card { border: 1px solid rgba(0,0,0,0.1); overflow: hidden; position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .tier-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
+  .tier-card.featured { border-color: var(--gold); }
+  .tier-badge {
+    position: absolute; top: 20px; right: 20px;
+    background: var(--gold); color: var(--forest);
+    font-size: 0.625rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px;
+  }
+  .tier-header { padding: 44px 36px 32px; background: var(--forest); }
+  .tier-label { font-size: 0.8125rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .tier-name { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 400; color: #fff; line-height: 1.2; }
+  .tier-price { margin-top: 20px; display: flex; align-items: baseline; gap: 6px; }
+  .tier-price-num { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 500; color: var(--gold-light); }
+  .tier-price-label { font-size: 1.0625rem; color: rgba(255,255,255,0.6); }
+  .tier-standard { font-size: 0.875rem; color: rgba(255,255,255,0.45); margin-top: 6px; }
+  .tier-body { padding: 32px 36px 36px; background: #fff; }
+  .tier-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 11px 0; border-bottom: 1px solid #f0ede8; font-size: 0.9375rem; gap: 12px; }
+  .tier-row:last-of-type { border-bottom: none; }
+  .tier-row-label { color: var(--mid); line-height: 1.4; }
+  .tier-row-value { font-weight: 500; color: var(--charcoal); text-align: right; flex-shrink: 0; }
+
+  .tier-cta {
+    display: block; width: 100%; padding: 14px;
+    background: var(--gold); color: var(--forest);
+    font-size: 0.9375rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none; text-align: center; margin-top: 28px;
+    transition: background 0.2s;
+  }
+  .tier-cta:hover { background: var(--gold-light); }
+
+  /* ── TRUST / QUOTE ──────────────────────────────────────── */
+  .trust { background: var(--forest); }
+  .trust .section-label { color: var(--gold); }
+  .trust .section-title { color: #fff; }
+  .trust .section-body { color: rgba(255,255,255,0.6); }
+  .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 60px; align-items: start; }
+  .trust-points { display: flex; flex-direction: column; gap: 32px; }
+  .trust-point { display: flex; gap: 20px; align-items: flex-start; }
+  .trust-point-icon { width: 2.5rem; height: 2.5rem; min-width: 2.5rem; border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 2.125rem; margin-top: 2px; }
+  .trust-point-text h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--gold-light); margin-bottom: 4px; }
+  .trust-point-text p { font-size: 1rem; color: rgba(255,255,255,0.65); line-height: 1.65; }
+  .trust-visual {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 48px 40px;
+    position: relative;
+  }
+  .trust-visual::before { content: ''; position: absolute; top: 10px; left: 10px; right: -10px; bottom: -10px; border: 1px solid rgba(201,168,76,0.1); z-index: -1; }
+  .trust-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .trust-stat { border-left: 2px solid var(--gold); padding-left: 16px; }
+  .trust-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 500; color: var(--gold-light); }
+  .trust-stat-desc { font-size: 0.875rem; color: rgba(255,255,255,0.55); margin-top: 4px; line-height: 1.4; }
+
+  /* ── FAQ ─────────────────────────────────────────────────── */
+  .faq { background: var(--warm); }
+  .faq-list { margin-top: 52px; max-width: 760px; }
+  .faq-item { border-bottom: 1px solid rgba(0,0,0,0.1); }
+  .faq-q {
+    width: 100%; background: none; border: none; padding: 22px 0;
+    font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400;
+    color: var(--forest); text-align: left; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  .faq-q::after { content: '+'; font-family: 'DM Sans', sans-serif; font-size: 1.4rem; color: var(--gold); flex-shrink: 0; transition: transform 0.2s; }
+  .faq-q.open::after { transform: rotate(45deg); }
+  .faq-a { font-size: 1rem; color: var(--mid); line-height: 1.5; padding: 0 0 22px 0; display: none; }
+  .faq-a.open { display: block; }
+
+  /* ── WAITLIST FORM ───────────────────────────────────────── */
+  .waitlist-section {
+    background: linear-gradient(135deg, #0d2206 0%, #1e3a12 50%, #0a1a06 100%);
+    text-align: center; padding: 120px 32px; position: relative; overflow: hidden;
+  }
+  .waitlist-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(201,168,76,0.05) 0%, transparent 70%); }
+  .waitlist-section .section-label { color: var(--gold); }
+  .waitlist-section .section-title { color: #fff; max-width: 600px; margin: 0 auto 16px; }
+  .waitlist-section .section-body { color: rgba(255,255,255,0.5); margin: 0 auto 52px; }
+  .waitlist-form {
+    max-width: 520px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 14px;
+    position: relative; z-index: 1;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .waitlist-form input, .waitlist-form select {
+    width: 100%; padding: 14px 18px;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(201,168,76,0.25);
+    color: rgba(255,255,255,0.88); font-size: 1rem; font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.2s;
+  }
+  .waitlist-form input::placeholder { color: rgba(255,255,255,0.4); }
+  .waitlist-form input:focus, .waitlist-form select:focus { outline: none; border-color: var(--gold); }
+  .waitlist-form select { color: rgba(255,255,255,0.65); }
+  .waitlist-form select option { background: #1e3a12; color: #fff; }
+  .waitlist-form button {
+    padding: 16px 44px; background: var(--gold); color: var(--forest);
+    font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase; border: none; cursor: pointer;
+    margin-top: 8px; transition: background 0.2s;
+  }
+  .waitlist-form button:hover { background: var(--gold-light); }
+  .form-disclaimer { font-size: 0.9375rem; color: rgba(255,255,255,0.4); line-height: 1.5; margin-top: 8px; }
+  .success-state { display: none; position: relative; z-index: 1; }
+  .success-state h3 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: #fff; margin-bottom: 12px; }
+  .success-state p { font-size: 14.5px; color: rgba(255,255,255,0.5); max-width: 440px; margin: 0 auto; line-height: 1.7; }
+
+  /* ── FOOTER ─────────────────────────────────────────────── */
+  footer { background: #0a1a06; padding: 28px 32px; text-align: center; }
+  footer p { font-size: 0.9375rem; color: rgba(255,255,255,0.35); letter-spacing: 1px; }
+
+  /* ── ANIMATIONS ─────────────────────────────────────────── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pulse-line { 0%, 100% { opacity: 0.3; transform: scaleY(1); } 50% { opacity: 0.7; transform: scaleY(1.1); } }
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ─────────────────────────────────────────── */
+  @media (max-width: 900px) { .tiers-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; } }
+  @media (max-width: 768px) { .why-grid { grid-template-columns: 1fr; } .trust-grid { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } .hero-stats { gap: 32px; } }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Waypoint Acres · Alberta · Pre-Opening Only</p>
+  <h1>Lock In Your Rate<br>Before We Open.<br><em>For Life.</em></h1>
+  <p class="hero-sub">Off-grid eco-luxury cabins &amp; events · 241 acres · 45 min west of Edmonton · Opening late 2027</p>
+  <div class="hero-divider"></div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">3</div><div class="hero-stat-label">Membership Tiers</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">Life</div><div class="hero-stat-label">Rate Guarantee</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">1–4</div><div class="hero-stat-label">Free Cabin Nights / Year</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-label">Refundable If We Don't Open</div></div>
+  </div>
+  <div class="hero-cta">
+    <a href="#waitlist" class="btn-primary">Join the Waitlist</a>
+    <a href="#tiers" class="btn-ghost">See the Tiers</a>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- WHY JOIN -->
+<section class="why">
+  <div class="container">
+    <p class="section-label reveal">The Opportunity</p>
+    <h2 class="section-title reveal">The Lowest Rate We Will<br><em>Ever Offer.</em></h2>
+    <p class="section-body reveal">Founding Membership is a pre-opening loyalty program for people who want to be part of Waypoint Acres from the beginning — and lock in rates before the rest of the world shows up. Once we open, this window closes permanently.</p>
+    <div class="why-grid reveal">
+      <div class="why-block accent">
+        <div class="why-block-icon">🔒</div>
+        <h4>Rates Locked for Life</h4>
+        <p>Active membership rates never increase — regardless of how much standard rates rise over time.</p>
+      </div>
+      <div class="why-block">
+        <div class="why-block-icon">📅</div>
+        <h4>Priority Booking Windows</h4>
+        <p>Plan ahead with early access to our booking calendar — before dates open to the public.</p>
+      </div>
+      <div class="why-block">
+        <div class="why-block-icon">🎟️</div>
+        <h4>Complimentary Event Double Passes</h4>
+        <p>Attend paid events free with your pass. Each pass admits two. Tier determines how many passes you receive per year.</p>
+      </div>
+      <div class="why-block">
+        <div class="why-block-icon">📬</div>
+        <h4>Bi-Monthly Insider Updates</h4>
+        <p>Learn what we're planning and bringing in next — before it's announced anywhere else.</p>
+      </div>
+      <div class="why-block">
+        <div class="why-block-icon">🌲</div>
+        <h4>Founding Member Recognition</h4>
+        <p>We want to show off our loyal fans — online and on-site. Steward members also receive a permanent wall plaque at the venue.</p>
+      </div>
+      <div class="why-block accent">
+        <div class="why-block-icon">💰</div>
+        <h4>Cabin Discount on Every Stay</h4>
+        <p>Savings are substantially greater than the standard multi-night discount — and locked in permanently at your Founding Rate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIERS -->
+<section class="tiers" id="tiers">
+  <div class="container">
+    <p class="section-label reveal">Membership Tiers</p>
+    <h2 class="section-title reveal">Three Tiers.<br><em>One Simple Principle.</em></h2>
+    <p class="section-body reveal">Every tier pays for itself — free cabin nights alone cover the annual fee. Add discounts on stays and events, complimentary event passes, and early booking access, and the value compounds the more you use the property.</p>
+
+    <div class="tiers-grid reveal">
+
+      <!-- PIONEER -->
+      <div class="tier-card">
+        <div class="tier-header">
+          <p class="tier-label">Founding Tier 1</p>
+          <h3 class="tier-name">Pioneer Pass</h3>
+          <div class="tier-price">
+            <span class="tier-price-num">$299</span>
+            <span class="tier-price-label">/ year</span>
+          </div>
+          <div class="tier-standard">Standard Rate after opening: $349/yr</div>
+        </div>
+        <div class="tier-body">
+          <div class="tier-row"><span class="tier-row-label">Complimentary Cabin Nights / yr</span><span class="tier-row-value">1 night</span></div>
+          <div class="tier-row"><span class="tier-row-label">Cabin Discount</span><span class="tier-row-value">10% off standard rate</span></div>
+          <div class="tier-row"><span class="tier-row-label">WA Event Discount</span><span class="tier-row-value">20% off admission</span></div>
+          <div class="tier-row"><span class="tier-row-label">Complimentary Event Double Passes</span><span class="tier-row-value">1 pass</span></div>
+          <div class="tier-row"><span class="tier-row-label">Early Booking Window</span><span class="tier-row-value">14 days early</span></div>
+          <div class="tier-row"><span class="tier-row-label">Bi-Monthly Newsletter</span><span class="tier-row-value">✓</span></div>
+          <div class="tier-row"><span class="tier-row-label">First Access: New Events & Activities</span><span class="tier-row-value">—</span></div>
+          <div class="tier-row"><span class="tier-row-label">Founding Member Recognition</span><span class="tier-row-value">Website listing</span></div>
+          <a href="#waitlist" class="tier-cta" onclick="prefill('Pioneer Pass — $299/yr')">Join — Pioneer</a>
+        </div>
+      </div>
+
+      <!-- TRAILBLAZER -->
+      <div class="tier-card featured">
+        <div class="tier-header">
+          <p class="tier-label">Founding Tier 2</p>
+          <h3 class="tier-name">Trailblazer Pass</h3>
+          <div class="tier-price">
+            <span class="tier-price-num">$599</span>
+            <span class="tier-price-label">/ year</span>
+          </div>
+          <div class="tier-standard">Standard Rate after opening: $699/yr</div>
+        </div>
+        <div class="tier-body">
+          <div class="tier-row"><span class="tier-row-label">Complimentary Cabin Nights / yr</span><span class="tier-row-value">2 nights</span></div>
+          <div class="tier-row"><span class="tier-row-label">Cabin Discount</span><span class="tier-row-value">15% off standard rate</span></div>
+          <div class="tier-row"><span class="tier-row-label">WA Event Discount</span><span class="tier-row-value">25% off admission</span></div>
+          <div class="tier-row"><span class="tier-row-label">Complimentary Event Double Passes</span><span class="tier-row-value">2 passes</span></div>
+          <div class="tier-row"><span class="tier-row-label">Early Booking Window</span><span class="tier-row-value">30 days early</span></div>
+          <div class="tier-row"><span class="tier-row-label">Bi-Monthly Newsletter</span><span class="tier-row-value">✓</span></div>
+          <div class="tier-row"><span class="tier-row-label">First Access: New Events & Activities</span><span class="tier-row-value">✓</span></div>
+          <div class="tier-row"><span class="tier-row-label">Founding Member Recognition</span><span class="tier-row-value">Website listing</span></div>
+          <a href="#waitlist" class="tier-cta" onclick="prefill('Trailblazer Pass — $599/yr')">Join — Trailblazer</a>
+        </div>
+      </div>
+
+      <!-- STEWARD -->
+      <div class="tier-card">
+        <div class="tier-header">
+          <p class="tier-label">Founding Tier 3</p>
+          <h3 class="tier-name">Steward Pass</h3>
+          <div class="tier-price">
+            <span class="tier-price-num">$1,200</span>
+            <span class="tier-price-label">/ year</span>
+          </div>
+          <div class="tier-standard">Standard Rate after opening: $1,499/yr</div>
+        </div>
+        <div class="tier-body">
+          <div class="tier-row"><span class="tier-row-label">Complimentary Cabin Nights / yr</span><span class="tier-row-value">4 nights</span></div>
+          <div class="tier-row"><span class="tier-row-label">Cabin Discount</span><span class="tier-row-value">20% off standard rate</span></div>
+          <div class="tier-row"><span class="tier-row-label">WA Event Discount</span><span class="tier-row-value">30% off admission</span></div>
+          <div class="tier-row"><span class="tier-row-label">Complimentary Event Double Passes</span><span class="tier-row-value">3 passes</span></div>
+          <div class="tier-row"><span class="tier-row-label">Early Booking Window</span><span class="tier-row-value">45 days early</span></div>
+          <div class="tier-row"><span class="tier-row-label">Bi-Monthly Newsletter</span><span class="tier-row-value">✓</span></div>
+          <div class="tier-row"><span class="tier-row-label">First Access: New Events & Activities</span><span class="tier-row-value">✓</span></div>
+          <div class="tier-row"><span class="tier-row-label">Founding Member Recognition</span><span class="tier-row-value">Website listing + wall plaque</span></div>
+          <a href="#waitlist" class="tier-cta" onclick="prefill('Steward Pass — $1,200/yr')">Join — Steward</a>
+        </div>
+      </div>
+
+    </div>
+
+    <p style="margin-top: 28px; font-size: 0.9375rem; color: var(--light); text-align: center; line-height: 1.5;">Annual renewal each April. Mid-year memberships prorated. Founding Rate locked from your original join date — if membership lapses and you rejoin, Standard Rates apply.<br>Complimentary cabin nights are not valid on statutory holidays or designated peak weekends. Cabin discount applies to standard nightly rates. A 10% multi-night discount is also available to all guests. Discounts are not stackable — whichever is greater applies at checkout. WA Event Discount applies to Waypoint Acres-hosted ticketed events only.</p>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="container">
+    <p class="section-label reveal">The Guarantee</p>
+    <h2 class="section-title reveal">Your Money Is Safe<br><em>Until We Open.</em></h2>
+    <p class="section-body reveal">This is a pre-opening program on a project still in development. We've built in protections that reflect that honestly.</p>
+
+    <div class="trust-grid reveal">
+      <div class="trust-points">
+        <div class="trust-point">
+          <div class="trust-point-icon">🏦</div>
+          <div class="trust-point-text">
+            <h4>Held in Trust</h4>
+            <p>All pre-opening membership payments are held separately from development funds. If the venue does not open for any reason, every dollar is refunded in full. No exceptions, no questions.</p>
+          </div>
+        </div>
+        <div class="trust-point">
+          <div class="trust-point-icon">📅</div>
+          <div class="trust-point-text">
+            <h4>Your Clock Starts When We Open</h4>
+            <p>Membership doesn't start ticking until opening day. You're not paying for time before the venue exists. First renewal is the April after we open.</p>
+          </div>
+        </div>
+        <div class="trust-point">
+          <div class="trust-point-icon">🏕️</div>
+          <div class="trust-point-text">
+            <h4>Owner-Operated, On-Site</h4>
+            <p>The developer lives on-site full time. There is no absentee management layer. Every guest interaction, every maintenance call, every booking happens with someone who has a personal stake in this property.</p>
+          </div>
+        </div>
+        <div class="trust-point">
+          <div class="trust-point-icon">🌿</div>
+          <div class="trust-point-text">
+            <h4>Backed by Explore Edmonton</h4>
+            <p>Waypoint Acres is supported by Edmonton's destination marketing organization, which has offered to actively promote activities, accommodations, and events to its existing visitor network.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trust-visual">
+        <div class="trust-stat-grid">
+          <div class="trust-stat">
+            <div class="trust-stat-num">241</div>
+            <div class="trust-stat-desc">acres, fee-simple titled land</div>
+          </div>
+          <div class="trust-stat">
+            <div class="trust-stat-num">14</div>
+            <div class="trust-stat-desc">net-zero cabins, Phase 1</div>
+          </div>
+          <div class="trust-stat">
+            <div class="trust-stat-num">350</div>
+            <div class="trust-stat-desc">seat event hall capacity</div>
+          </div>
+          <div class="trust-stat">
+            <div class="trust-stat-num">Zero</div>
+            <div class="trust-stat-desc">propane or diesel generators — ever</div>
+          </div>
+          <div class="trust-stat">
+            <div class="trust-stat-num">2027</div>
+            <div class="trust-stat-desc">construction target; opening late 2027 / early 2028</div>
+          </div>
+          <div class="trust-stat">
+            <div class="trust-stat-num">100%</div>
+            <div class="trust-stat-desc">refundable if venue does not open</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <p class="section-label reveal">Questions</p>
+    <h2 class="section-title reveal">The Honest<br><em>Answers.</em></h2>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What exactly is Waypoint Acres?</button>
+        <div class="faq-a">A 241-acre off-grid eco-luxury retreat approximately 45 minutes west of Edmonton, Alberta. The property will open in late 2027 or early 2028 with 14 net-zero cabins (each with private hot tub and smokeless firepit), a 350-seat event hall with custom thrust stage and full A/V, a commercial kitchen and Commons Lounge, and a full outdoor activity park — fat bikes, snowshoes, cross-country skis, Ninja obstacle course, outdoor escape rooms, MUGA courts, and heated loungers. All energy comes from geothermal, solar, and biomass — no propane, no diesel generators. The site is fully dry: no alcohol served or permitted anywhere on the property, ever.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is the Founding Rate genuinely locked forever?</button>
+        <div class="faq-a">Yes, as long as your membership is continuous. Standard Rates will increase as the property establishes its reputation and demand grows. Founding Rates will not increase for members who maintain uninterrupted enrollment from their original join date. If a membership lapses and is reinstated later, the Standard Rate at the time of reinstatement applies going forward.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What happens if Waypoint Acres doesn't open?</button>
+        <div class="faq-a">All pre-opening membership payments are held in trust — completely separate from development capital — and fully refunded if the venue does not open. This is an unconditional guarantee, not a policy with carve-outs.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">When does my membership actually start?</button>
+        <div class="faq-a">Your membership clock starts on opening day — not the day you join the waitlist or pay. You are not paying for time that doesn't exist yet. The first renewal date is the April following opening, prorated if you joined mid-year.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What's the difference between the tiers in practical terms?</button>
+        <div class="faq-a">Pioneer is the entry point — Founding Rate locked on cabin bookings, priority access to the booking calendar, and the annual event pass. Trailblazer adds a deeper cabin discount and extended booking window priority. Steward adds event hall discount, maximum booking priority across all property categories, named recognition on the Founding Members Wall, and a direct line to the founder for feedback and input on programming decisions.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">I want to book the event hall for my organization — is there a membership for that?</button>
+        <div class="faq-a">The Steward tier includes an event hall discount. For organizational or corporate event bookings, a direct conversation is the better starting point — we'll work out a rate structure that makes sense for your booking volume and schedule. Reach out through the contact form and we'll get a conversation going.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What does "dry venue" mean in practice?</button>
+        <div class="faq-a">No alcohol is served, sold, or permitted anywhere on the Waypoint Acres property at any time — this applies to all guests, all events, and all circumstances. Specialty mocktails and non-alcoholic beverages are available at applicable events. This is a permanent design decision, not a policy subject to change based on demand or event type.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST FORM -->
+<section class="waitlist-section" id="waitlist">
+  <div class="container">
+    <p class="section-label">Reserve Your Place</p>
+    <h2 class="section-title">Join the Founding<br><em>Member Waitlist.</em></h2>
+    <p class="section-body">No payment required to join the waitlist. We'll confirm details and next steps by email. You'll hear from us — not a mailing list.</p>
+
+    <form class="waitlist-form" id="waitlist-form">
+      <div class="form-row">
+        <input type="text"  name="first" placeholder="First name" required>
+        <input type="text"  name="last"  placeholder="Last name"  required>
+      </div>
+      <input type="email"  name="email" placeholder="Email address" required>
+      <input type="text"   name="org"   placeholder="Organization (optional)">
+      <select name="tier" id="tier-select">
+        <option value="">— Which tier interests you? —</option>
+        <option>Pioneer Pass — $299/yr</option>
+        <option>Trailblazer Pass — $599/yr</option>
+        <option>Steward Pass — $1,200/yr</option>
+        <option>Not sure yet — send me more information</option>
+      </select>
+      <button type="submit">Reserve My Spot on the Founding Member Waitlist</button>
+      <p class="form-disclaimer">No payment required now. Your information will not be shared or sold. You'll receive one confirmation and occasional project updates — unsubscribe at any time.</p>
+    </form>
+
+    <div class="success-state" id="success-state">
+      <h3>You're on the list.</h3>
+      <p>We'll be in touch as the project takes shape. If you have questions before then, reply to the confirmation email.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>WAYPOINT ACRES &nbsp;·&nbsp; waypointacres.ca &nbsp;·&nbsp; Off-Grid Eco-Luxury Event Venue &amp; Cabins &nbsp;·&nbsp; ~45 min West of Edmonton, Alberta &nbsp;·&nbsp; Opening Late 2027</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // FAQ
+  function toggleFaq(btn) {
+    btn.classList.toggle('open');
+    btn.nextElementSibling.classList.toggle('open');
+  }
+
+  // Tier pre-fill
+  function prefill(val) {
+    document.getElementById('tier-select').value = val;
+    document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Form submit
+  document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.style.display = 'none';
+    document.querySelector('.waitlist-section .section-body').style.display = 'none';
+    document.getElementById('success-state').style.display = 'block';
+  });
+</script>
+</body>
+</html>
